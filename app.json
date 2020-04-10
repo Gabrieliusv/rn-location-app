@@ -1,9 +1,7 @@
 {
   "expo": {
-    "name": "RN Guide",
-    "slug": "rn-complete-guide",
-    "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "name": "rn-test",
+    "slug": "rn-test",
     "platforms": [
       "ios",
       "android",
