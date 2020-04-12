@@ -1,14 +1,30 @@
 import React from "react";
-import { View, Text, StyleSheet, Platform } from "react-native";
+import { View, Text, StyleSheet, Platform, FlatList } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { connect } from "react-redux";
 
 import HeaderButton from "../components/HeaderButton";
+import PlaceItem from "../components/PlaceItem";
 
-const PlacesListScreen = () => {
+const PlacesListScreen = ({ places, navigation }) => {
   return (
-    <View>
-      <Text>PlacesListScreen</Text>
-    </View>
+    <FlatList
+      data={places}
+      keyExtractor={(item) => item.id}
+      renderItem={(itemData) => (
+        <PlaceItem
+          image={null}
+          title={itemData.item.title}
+          address={null}
+          onSelect={() => {
+            navigation.navigate("PlacesDetail", {
+              placeTitle: itemData.item.title,
+              placeId: itemData.item.id,
+            });
+          }}
+        />
+      )}
+    />
   );
 };
 
@@ -31,4 +47,8 @@ PlacesListScreen.navigationOptions = (navData) => {
 
 const styles = StyleSheet.create({});
 
-export default PlacesListScreen;
+const mapStateToProps = (state) => ({
+  places: state.places.places,
+});
+
+export default connect(mapStateToProps)(PlacesListScreen);
