@@ -20,7 +20,7 @@ const PlacesListScreen = ({ places, navigation, loadPlaces }) => {
         <PlaceItem
           image={itemData.item.imageUri}
           title={itemData.item.title}
-          address={null}
+          address={itemData.item.address}
           onSelect={() => {
             navigation.navigate("PlacesDetail", {
               placeTitle: itemData.item.title,
